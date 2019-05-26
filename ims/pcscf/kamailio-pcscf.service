@@ -1,0 +1,23 @@
+[Unit]
+Description=Kamailio (OpenSER) - P-CSCF 
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=forking
+Environment='CFGFILE=/usr/local/kamailio-5.2.3/etc/kamailio/ims/pcscf/kamailio.cfg'
+Environment='SHM_MEMORY=64'
+Environment='PKG_MEMORY=8'
+Environment='USER=kamailio'
+Environment='GROUP=kamailio'
+# PIDFile requires a full absolute path
+PIDFile=/var/run/kamailio/kamailio_pcscf.pid
+# ExecStart requires a full absolute path
+ExecStart= /usr/local/kamailio-5.2.3/sbin/kamailio -P /var/run/kamailio/kamailio_pcscf.pid -f $CFGFILE -m $SHM_MEMORY -M $PKG_MEMORY -u $USER -g $GROUP
+Restart=on-failure
+# /var/run/kamailio in tmpfs
+RuntimeDirectory=kamailio
+RuntimeDirectoryMode=0750
+
+[Install]
+WantedBy=multi-user.target
