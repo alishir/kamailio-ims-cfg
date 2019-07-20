@@ -249,7 +249,7 @@
 	</xs:complexType>
 	<xs:complexType name="tSePoTriExtension">
 		<xs:sequence>
-			<xs:element name="RegistrationType" type="tRegistrationType" minOccurs="0" maxOccurs="2"/>
+			<xs:element name="RegistrationType" type="tRegistrationType" minOccurs="0" maxOccurs="3"/>
 			<xs:element name="Extension" type="tExtension" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
